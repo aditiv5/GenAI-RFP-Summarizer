@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="./logo.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://unpkg.com/amazon-quicksight-embedding-sdk@2.0.0/dist/quicksight-embedding-js-sdk.min.js"></script>
+    <script>
+      // Amplify need this to work. See https://github.com/aws/aws-sdk-js/issues/3673
+      const isBrowser = () => typeof window !== 'undefined';
+      const isGlobal = () => typeof global !== 'undefined';
+      if (!isGlobal() && isBrowser()) {
+        var global = window;
+      }
+      document.onkeydown = function (e) {
+        if (!window.location.href.includes('localhost')) {
+          if (event.keyCode == 123) {
+            return false;
+          }
+          if (e.ctrlKey && e.shiftKey && e.keyCode == 'I'.charCodeAt(0)) {
+            return false;
+          }
+          if (e.ctrlKey && e.shiftKey && e.keyCode == 'J'.charCodeAt(0)) {
+            return false;
+          }
+          if (e.ctrlKey && e.keyCode == 'U'.charCodeAt(0)) {
+            return false;
+          }
+          if (e.key == 'F12') {
+            return false;
+          }
+        }
+      };
+    </script>
+  </head>
+  <body oncontextmenu="return false;">
+    <div id="root"></div>
+    <script type="module" src="/src/main.jsx"></script>
+  </body>
+</html>
